@@ -57,6 +57,17 @@ class DbUser {
         }
     }
 
+    async validatePassword(userEmail, userPassword) {
+        if (mongoose.connection.readyState == 1) {
+            const user = await User.findOne({email: userEmail});
+            return user.validatePassword(userPassword);
+        } else {
+            return new Promise((resolve, reject) => {
+                reject({ message: "Database is not available" })
+            });
+        }
+    }
+
 }
 
 module.exports = DbUser;

@@ -75,4 +75,11 @@ router.post('/getbyid', async (req, res) => {
     res.json({result});
 });
 
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    let coreUser = new CoreUser();
+    let result = await coreUser.login(email, password).catch(err => { return {} });
+    res.json(result);
+});
+
 module.exports = router;
