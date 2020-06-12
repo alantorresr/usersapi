@@ -7,6 +7,6 @@ const swaggerUi = require('../node_modules/swagger-ui-express');
 router.use('/users', require('./users'))
 
 //Docs
-// router.use(`/docs`, swaggerUi.serve, swaggerUi.setup(require(`./docs/swagger`)));
+router.use(`/docs`, swaggerUi.serve, swaggerUi.setup(require(`./docs/swagger`)));
 
 module.exports = router;

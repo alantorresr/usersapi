@@ -1,0 +1,91 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This documentation describes the use of Users API.",
+        "version": "1.0.0",
+        "title": "Users Api - v1.0.0",
+        "contact": {
+            "email": "alan9805@gmail.com"
+        }
+    },
+    "host": "localhost:5000",
+    "basePath": "/v1/",
+    "tags": [
+        {
+            "name": "user"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/users/new": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Creates a new user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "in": "body",
+                    "name": "User",
+                    "description": "User object *(All the fields are required except active field)*",
+                    "required": false,
+                    "schema": {
+                    "$ref": "#/definitions/user"
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "type": "object",
+                    "properties": {
+                        "ok": {
+                            "type": "boolean",
+                            "example": true
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "ok"
+                        }
+                        }
+                    }
+                }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "user": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type":"string",
+                    "example": "Alan"
+                },
+                "email": {
+                    "type":"string",
+                    "format": "email",
+                    "example": "alan9805@gmail.com"
+                },
+                "password": {
+                    "type":"string",
+                    "example": "jdbwjhjkjwjv"
+                },
+                "rol": {
+                    "type":"string",
+                    "example": "Admin"
+                },
+                "team": {
+                    "type":"string",
+                    "example": "Google"
+                }
+            }
+        }
+    }
+}
