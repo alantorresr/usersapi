@@ -13,9 +13,14 @@ class CoreUser {
         return result;
     }
     
-    newUser(user) {
+    async newUser(user) {
         let dbUser = new DbUser();
-        return dbUser.new(user);
+        let doc = await dbUser.getByEmail(user.email).catch(err => { return {} });
+        let result = {};
+        if(!doc){
+            result = dbUser.new(user);
+        }
+        return result;
     }
 
     updateUser(id, user) {

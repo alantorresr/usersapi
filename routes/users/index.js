@@ -14,10 +14,14 @@ router.post('/new', async (req, res) => {
     let coreUser = new CoreUser();
     let result = await coreUser.newUser(req.body)
         .then(doc => {
-            return {
-                ok: true,
-                message: doc.id
-            };
+            let result = {};
+            if(doc.id){
+                result = { ok: true, message: doc.id };
+            } else {
+                result = { ok: false, message: "This email already exist in the database." };
+            }
+            
+            return result
         })
         .catch(err => {
             return {
