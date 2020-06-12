@@ -5,9 +5,10 @@ const mongoose = require('./mongodb-connection');
 class DbUser {
     constructor() {};
 
-    new(user){
+    async new(user){
         if (mongoose.connection.readyState == 1) {
             let instUser = new User(user)
+            instUser.password = await instUser.encryptPassword(instUser.password);
             return instUser.save(user);
         } else {
             return new Promise((resolve, reject) => {

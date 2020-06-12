@@ -6,7 +6,7 @@ const port = process.env.PORT;
 const app = express();
 
 //Server configuration
-app.set("port", port || 3000);
+app.set("port", port || 5000);
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors({origin: true, credentials: true}));
