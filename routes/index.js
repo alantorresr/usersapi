@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const swaggerUi = require('./node_modules/swagger-ui-express');
+
 const swaggerUi = require('../node_modules/swagger-ui-express');
 
 //Routes
