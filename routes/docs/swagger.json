@@ -43,16 +43,124 @@
                 "200": {
                     "description": "OK",
                     "schema": {
-                    "type": "object",
-                    "properties": {
-                        "ok": {
-                            "type": "boolean",
-                            "example": true
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "ok"
+                        "type": "object",
+                        "properties": {
+                            "ok": {
+                                "type": "boolean",
+                                "example": true
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "ok"
+                            },
+                            "token": {
+                                "type": "string",
+                                "example": "lwjrnvkwwkrhjvbkwjhrbvkj3hbiwurbviuwbrvikuj3bervikju3bervi3berivgb3erivb3iekrujbvfgk3erbuvj"
+                            }
                         }
+                    }
+                }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Get the user that match with the id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "in": "body",
+                    "name": "Login",
+                    "description": "Email and passwors",
+                    "required": false,
+                    "schema": {
+                        "$ref": "#/definitions/userLogin"
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "ok": {
+                                "type": "boolean",
+                                "example": true
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "Successful login"
+                            },
+                            "id": {
+                                "type": "string",
+                                "example": "5ee3213cc98f8a67a0dc5d1b"
+                            },
+                            "token": {
+                                "type": "string",
+                                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTMyMTNjYzk4ZjhhNjdhMGRjNWQxYiIsImlhdCI6MTU5MjAyMDAwNiwiZXhwIjoxNTkyMTA2NDA2fQ.OOCXaaaVzQjthocf_EFKOIi7W_wP5_umIS5rq9Kd6Dg"
+                            }
+                        }
+                    }
+                }
+                }
+            }
+        },
+        "/users/getbyid": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Get the user that match with the id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "in": "body",
+                    "name": "User",
+                    "description": "User id",
+                    "required": false,
+                    "schema": {
+                        "$ref": "#/definitions/userId"
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "active": {
+                                "type": "boolean",
+                                "example": true
+                            },
+                            "_id": {
+                                "type": "string",
+                                "example": "5ee3213cc98f8a67a0dc5d1b"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Alan"
+                            },
+                            "email": {
+                                "type": "string",
+                                "example": "alan9805@gmail.com"
+                            },
+                            "rol": {
+                                "type": "string",
+                                "example": "ADMIN"
+                            },
+                            "team": {
+                                "type": "string",
+                                "example": "Google"
+                            }
                         }
                     }
                 }
@@ -60,6 +168,18 @@
             }
         }
     },
+    "securityDefinitions": {
+        "token": {
+            "type": "apiKey",
+            "name": "x-access-token",
+            "in": "header"
+        }
+    },
+    "security": [
+        {
+            "token": []
+        }
+    ],
     "definitions": {
         "user": {
             "type": "object",
@@ -88,6 +208,28 @@
                 "active": {
                     "type":"boolean",
                     "example": true
+                }
+            }
+        },
+        "userId": {
+            "type": "string",
+            "properties": {
+                "id": {
+                    "type":"string",
+                    "example": "kwjfrbvkwbrvkj3brkjvg"
+                }
+            }
+        },
+        "userLogin": {
+            "type": "string",
+            "properties": {
+                "email": {
+                    "type":"string",
+                    "example": "alan9805@gmail.com"
+                },
+                "password": {
+                    "type":"string",
+                    "example": "jdbwjhjkjwjv"
                 }
             }
         }
