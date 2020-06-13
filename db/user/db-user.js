@@ -49,7 +49,7 @@ class DbUser {
 
     getByEmail(userEmail) {
         if (mongoose.connection.readyState == 1) {
-            return User.findOne({email: userEmail});
+            return User.findOne({ email: userEmail }, { password: 0 });
         } else {
             return new Promise((resolve, reject) => {
                 reject({ message: "Database is not available" })

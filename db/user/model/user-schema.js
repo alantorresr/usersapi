@@ -19,8 +19,7 @@ const UserSchema = new Schema({
         required: true
     },
     team: {
-        type: String,
-        required: true
+        type: String
     },
     active: {
         type: Boolean,
