@@ -68,6 +68,16 @@ class DbUser {
         }
     }
 
+    getByTeamId(teamId){
+        if (mongoose.connection.readyState == 1) {
+            return User.find({}, {password: 0}).where('team').equals(teamId);
+        } else {
+            return new Promise((resolve, reject) => {
+                reject({ message: "Database is not available" })
+            });
+        }
+    }
+
 }
 
 module.exports = DbUser;
