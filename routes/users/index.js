@@ -44,13 +44,13 @@ router.put('/update/:idUser', verifyToken, async (req, res) => {
     let result = await coreUser.updateUser(id, req.body)
         .then(doc => {
             return {
-                isCorrect: true,
-                message: doc.id
+                ok: true,
+                ok: doc.id
             };
         })
         .catch(err => {
             return {
-                isCorrect: false,
+                ok: false,
                 message: err.message
             };
         });
@@ -62,13 +62,13 @@ router.post('/delete', verifyToken, async (req, res) => {
     let result = await coreUser.deleteUser(req.body.id)
         .then(doc => {
             return {
-                isCorrect: true,
+                ok: true,
                 message: doc.id
             };
         })
         .catch(err => {
             return {
-                isCorrect: false,
+                ok: false,
                 message: err.message
             };
         });
