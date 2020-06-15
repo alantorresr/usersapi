@@ -94,4 +94,10 @@ router.post('/login', async (req, res) => { //Not protected
     res.json(result);
 });
 
+router.post('/getbyteamid', verifyToken, async (req, res) => {
+    let coreUser = new CoreUser();
+    let result = await coreUser.getUserByTeamId(req.body.id).catch(err => { return {} });
+    res.json({result});
+});
+
 module.exports = router;

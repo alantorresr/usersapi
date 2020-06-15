@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcryptjs');
+const mongoose = require('../mongodb-connection');
 
 const UserSchema = new Schema({
     name: {
@@ -19,7 +20,8 @@ const UserSchema = new Schema({
         required: true
     },
     team: {
-        type: String
+        type: String,
+        required: true
     },
     active: {
         type: Boolean,

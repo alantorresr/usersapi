@@ -62,6 +62,16 @@ class CoreUser {
         }
         return result;
     }
+
+    async getUserByTeamId(id) {
+        let dbUser = new DbUser();
+        let doc = await dbUser.getByTeamId(id).catch(err => { return {} });
+        let result = {};
+        if (doc !== {}) {
+            result = doc;
+        }
+        return result;
+    }
 }
 
 module.exports = CoreUser;
