@@ -37,13 +37,6 @@ router.put('/update/:idTeam', verifyToken, async (req, res) => {
     res.json(result);
 });
 
-router.post('/delete', (req, res) => {
-    res.status(200).json({
-        ok: true,
-        message: 'Delete team'
-    });
-});
-
 router.post('/delete', verifyToken, async (req, res) => {
     let coreTeam = new CoreTeam();
     let result = await coreTeam.deleteTeam(req.body.id)
