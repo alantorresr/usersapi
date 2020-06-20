@@ -19,10 +19,6 @@ class DbUser {
 
     async update(id, user){
         if (mongoose.connection.readyState == 1) {
-            // return User.findByIdAndUpdate({ _id: id }, user);
-            let instUser = new User(user)
-            instUser.password = await instUser.encryptPassword(instUser.password);
-            user.password = instUser.password;
             return User.findByIdAndUpdate({ _id: id }, user);
         } else {
             return new Promise((resolve, reject) => {
