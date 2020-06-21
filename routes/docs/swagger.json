@@ -1,0 +1,480 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This documentation describes the use of Users API.",
+        "version": "1.0.0",
+        "title": "Users Api - v1.0.0",
+        "contact": {
+            "email": "alan9805@gmail.com"
+        }
+    },
+    "host": "localhost",
+    "basePath": "/v1/",
+    "tags": [
+        {
+            "name": "user"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/users/new": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Creates a new user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "in": "body",
+                    "name": "User",
+                    "description": "User object *(All the fields are required except active field)*",
+                    "required": false,
+                    "schema": {
+                    "$ref": "#/definitions/user"
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "ok": {
+                                "type": "boolean",
+                                "example": true
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "5eec232a194a794aa49b3f93"
+                            },
+                            "token": {
+                                "type": "string",
+                                "example": "lwjrnvkwwkrhjvbkwjhrbvkj3hbiwurbviuwbrvikuj3bervikju3bervi3berivgb3erivb3iekrujbvfgk3erbuvj"
+                            }
+                        }
+                    }
+                }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Get the user that match with the id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "in": "body",
+                    "name": "Login",
+                    "description": "Email and passwors",
+                    "required": false,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type":"string",
+                                "example": "alan9805@gmail.com"
+                            },
+                            "password": {
+                                "type":"string",
+                                "example": "123456"
+                            }
+                        }
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "ok": {
+                                "type": "boolean",
+                                "example": true
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "Successful login"
+                            },
+                            "id": {
+                                "type": "string",
+                                "example": "5ee3213cc98f8a67a0dc5d1b"
+                            },
+                            "token": {
+                                "type": "string",
+                                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTMyMTNjYzk4ZjhhNjdhMGRjNWQxYiIsImlhdCI6MTU5MjAyMDAwNiwiZXhwIjoxNTkyMTA2NDA2fQ.OOCXaaaVzQjthocf_EFKOIi7W_wP5_umIS5rq9Kd6Dg"
+                            }
+                        }
+                    }
+                }
+                }
+            }
+        },
+        "/users/getbyid": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Get the user that match with the id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "in": "body",
+                    "name": "User",
+                    "description": "User id",
+                    "required": false,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type":"string",
+                                "example": "5eec232a194a794aa49b3f93"
+                            }
+                        }
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "active": {
+                                "type": "boolean",
+                                "example": true
+                            },
+                            "_id": {
+                                "type": "string",
+                                "example": "5ee3213cc98f8a67a0dc5d1b"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Alan"
+                            },
+                            "email": {
+                                "type": "string",
+                                "example": "alan9805@gmail.com"
+                            },
+                            "rol": {
+                                "type": "string",
+                                "example": "ADMIN"
+                            },
+                            "team": {
+                                "type": "string",
+                                "example": "5eec232a194a794aa49b3f93"
+                            }
+                        }
+                    }
+                }
+                }
+            }
+        },
+        "/users/update/{idUser}": {
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Update the user that match with the id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "name": "idUser",
+                    "in": "path",
+                    "description": "User Id",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "body",
+                    "name": "User",
+                    "description": "User properties",
+                    "required": false,
+                    "schema": {
+                        "$ref": "#/definitions/user"
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "ok": {
+                                "type": "string",
+                                "example": "5ee3213cc98f8a67a0dc5d1b"
+                            }
+                        }
+                    }
+                }
+                }
+            }
+        },
+        "/users/getbyteamid": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Get the user that match with the team id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "in": "body",
+                    "name": "Id Team",
+                    "description": "Team id",
+                    "required": false,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type":"string",
+                                "example": "5eec232a194a794aa49b3f93"
+                            }
+                        }
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "active": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "_id": {
+                                    "type": "string",
+                                    "example": "5ee3213cc98f8a67a0dc5d1b"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "Alan"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "example": "alan9805@gmail.com"
+                                },
+                                "rol": {
+                                    "type": "string",
+                                    "example": "ADMIN"
+                                },
+                                "team": {
+                                    "type": "string",
+                                    "example": "5eec232a194a794aa49b3f93"
+                                }
+                            }
+                        }
+                    }
+                }
+                }
+            }
+        },
+        "/teams/new": {
+            "post": {
+                "tags": [
+                    "team"
+                ],
+                "description": "Creates a new team",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "in": "body",
+                    "name": "Team",
+                    "description": "Team object",
+                    "required": false,
+                    "schema": {
+                    "$ref": "#/definitions/team"
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "ok": {
+                                "type": "boolean",
+                                "example": true
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "5eec232a194a794aa49b3f93"
+                            }
+                        }
+                    }
+                }
+                }
+            }
+        },
+        "/teams/getbyid": {
+            "post": {
+                "tags": [
+                    "team"
+                ],
+                "description": "Get the team that match with the id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "in": "body",
+                    "name": "Team",
+                    "description": "Team id",
+                    "required": false,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type":"string",
+                                "example": "5eec232a194a794aa49b3f93"
+                            }
+                        }
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "_id": {
+                                "type": "string",
+                                "example": "5ee3213cc98f8a67a0dc5d1b"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Google"
+                            },
+                            "creationDate": {
+                                "type": "string",
+                                "example": "2020-06-19 01:29:17.427Z"
+                            }
+                        }
+                    }
+                }
+                }
+            }
+        },
+        "/teams/update/{idTeam}": {
+            "put": {
+                "tags": [
+                    "team"
+                ],
+                "description": "Update the team that match with the id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "name": "idTeam",
+                    "in": "path",
+                    "description": "Team Id",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "body",
+                    "name": "Team",
+                    "description": "Team properties",
+                    "required": false,
+                    "schema": {
+                        "$ref": "#/definitions/team"
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "ok": {
+                                "type": "string",
+                                "example": "5ee3213cc98f8a67a0dc5d1b"
+                            }
+                        }
+                    }
+                }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "token": {
+            "type": "apiKey",
+            "name": "x-access-token",
+            "in": "header"
+        }
+    },
+    "security": [
+        {
+            "token": []
+        }
+    ],
+    "definitions": {
+        "user": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type":"string",
+                    "example": "Alan"
+                },
+                "email": {
+                    "type":"string",
+                    "format": "email",
+                    "example": "alan9805@gmail.com"
+                },
+                "password": {
+                    "type":"string",
+                    "example": "123"
+                },
+                "rol": {
+                    "type":"string",
+                    "example": "Admin"
+                },
+                "team": {
+                    "type":"string",
+                    "example": "5eec232a194a794aa49b3f93"
+                },
+                "active": {
+                    "type":"boolean",
+                    "example": true
+                }
+            }
+        },
+        "team": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type":"string",
+                    "example": "Google"
+                }
+            }
+        }
+    }
+}

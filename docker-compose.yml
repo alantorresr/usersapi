@@ -1,0 +1,26 @@
+version: '3'
+services:
+    app:
+        container_name: docker-node-mongo
+        restart: always
+        build: .
+        ports:
+            - '3000:3000'
+        links:
+            - mongo
+    mongo:
+        container_name: mongo
+        image: mongo
+        ports: 
+            - '27017:27017'
+    reverse-proxy:
+        container_name: "Reverse-Proxy"
+        image: jwilder/nginx-proxy:alpine
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+            - /etc/nginx/vhost.d
+            - /usr/share/nginx/html
